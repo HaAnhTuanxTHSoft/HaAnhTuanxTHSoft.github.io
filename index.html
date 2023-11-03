@@ -1,26 +1,61 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Clip Hott 2 Em Khánhh</title>
+  <title>-Clip Hott 2 Em Khánhh</title>
   <style>
     body {
       margin: 0;
       padding: 0;
-      background-color: #2cade06b;
-      overflow: hidden;
+      background-color: #f4f4f4;
+      font-family: Arial, sans-serif;
     }
 
     .video-container {
-      width: 60%; 
-      height: 60%; 
-      display: block; 
-      margin: auto; 
-      border: 5px solid white; 
+      width: 80%;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
     }
 
     video {
-      width: 120%;
-      height: 120%;
+      width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      border: 5px solid white;
+    }
+
+    .video-container .video-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    .video-container .video-controls button {
+      background: #0074d9;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .video-container .video-controls button.play-button {
+      background: #00bb00;
+    }
+
+    .upload-button {
+      display: block;
+      margin-top: 10px;
+      background: #0074d9;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -30,11 +65,18 @@
       <source src="398780028_6899722810095266_2251683263392002150_n.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
+    <div class="video-controls">
+      <button class="play-button" onclick="playVideo()">Nhấn Vào Đây Để Xem Video</button>
+    </div>
   </div>
 
   <script>
     var videoContainer = document.getElementById("video-container");
     var video = document.getElementById("myVideo");
+
+    function playVideo() {
+      video.play();
+    }
 
     videoContainer.addEventListener("dragover", function (e) {
       e.preventDefault();
