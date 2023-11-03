@@ -6,20 +6,54 @@
     body {
       margin: 0;
       padding: 0;
-      background-color: #000;
+      background-color: #2cade06b;
       overflow: hidden;
     }
 
+    .video-container {
+      width: 60%; 
+      height: 60%; 
+      display: block; 
+      margin: auto; 
+      border: 5px solid white; 
+    }
+
     video {
-      width: 200%;
-      height: 400%;
+      width: 120%;
+      height: 120%;
     }
   </style>
 </head>
 <body>
-  <video controls autoplay>
-    <source src="398780028_6899722810095266_2251683263392002150_n.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
+  <div class="video-container" id="video-container">
+    <video controls autoplay id="myVideo">
+      <source src="398780028_6899722810095266_2251683263392002150_n.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <script>
+    var videoContainer = document.getElementById("video-container");
+    var video = document.getElementById("myVideo");
+
+    videoContainer.addEventListener("dragover", function (e) {
+      e.preventDefault();
+    });
+
+    videoContainer.addEventListener("drop", function (e) {
+      e.preventDefault();
+      var files = e.dataTransfer.files;
+
+      if (files.length > 0) {
+        var file = files[0];
+        if (file.type.includes("video")) {
+          var objectURL = URL.createObjectURL(file);
+          video.src = objectURL;
+        } else {
+          alert("Chỉ chấp nhận tệp video.");
+        }
+      }
+    });
+  </script>
 </body>
 </html>
