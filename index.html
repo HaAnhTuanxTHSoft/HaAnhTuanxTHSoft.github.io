@@ -7,21 +7,22 @@
         body {
             margin: 0;
             padding: 0;
-            background-image: url('background.jpg'); /* Thay đổi URL hình nền của bạn */
+            background-image: url('background.jpg');
             background-size: cover;
-            font-family: Arial, sans-serif;
-            color: white; /* Màu chữ */
-            text-align: center; /* Căn giữa văn bản */
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
         }
 
         .video-container {
             width: 80%;
             margin: 0 auto;
             padding: 20px;
-            background-color: rgba(0, 0, 0, 0.5); /* Màu nền với độ trong suốt */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
             border-radius: 10px;
-            color: #fff; /* Màu chữ */
+            color: #333;
         }
 
         video {
@@ -29,7 +30,7 @@
             height: auto;
             display: block;
             margin: 0 auto;
-            border: 5px solid white;
+            border: 2px solid #0074d9;
         }
 
         .video-container .video-controls {
@@ -46,15 +47,42 @@
             padding: 10px 15px;
             border-radius: 5px;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
 
-        .video-container .video-controls button.play-button {
+        .video-container .video-controls button.play-button:hover {
             background: #00bb00;
         }
 
-        .upload-button {
-            display: block;
-            margin-top: 10px;
+        .text {
+            font-size: 28px;
+            margin-top: 20px;
+            color: #0074d9;
+            transition: color 0.3s;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .text:hover {
+            color: #00bb00;
+        }
+
+        .feedback-form {
+            margin-top: 20px;
+        }
+
+        .feedback-input {
+            padding: 10px;
+            border: 1px solid #0074d9;
+            border-radius: 5px;
+            width: 60%;
+            font-size: 16px;
+            outline: none;
+            margin-right: 10px;
+        }
+
+        .feedback-button {
             background: #0074d9;
             color: #fff;
             border: none;
@@ -63,26 +91,30 @@
             cursor: pointer;
         }
 
-        .text {
-            font-size: 24px;
-            margin-top: 20px;
-            /* Thêm hiệu ứng CSS cho văn bản */
-            animation: textAnimation 2s infinite;
+        .rating-stars {
+            margin-top: 10px;
         }
 
-        @keyframes textAnimation {
-            0% {
-                color: white;
-                transform: scale(1);
-            }
-            50% {
-                color: #00bb00;
-                transform: scale(1.1);
-            }
-            100% {
-                color: white;
-                transform: scale(1);
-            }
+        .rating-star {
+            font-size: 20px;
+            color: #0074d9;
+            cursor: pointer;
+        }
+
+        .share-button {
+            background: #0074d9;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .success-message {
+            color: #00bb00;
+            font-weight: bold;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -96,35 +128,37 @@
         <div class="video-controls">
             <button class="play-button" onclick="playVideo()">Nhấn Vào Đây Để Xem Video</button>
         </div>
-        <div class="text">Cập Nhật Phim Chất Lượng Nhất Ngày Hôm Nay</div>
+        <div class="text">Cập Nhật Phim Chất Lượng Mới Nhất Ngày Hôm Nay</div>
+        <div class="feedback-form">
+            <input class="feedback-input" type="text" placeholder="Nhập phản hồi..." id="feedback-input">
+            <button class="feedback-button" onclick="submitFeedback()">Gửi Phản Hồi</button>
+        </div>
+        <div class="rating-stars">
+            <span class="rating-star">☆</span>
+            <span class="rating-star">☆</span>
+            <span class="rating-star">☆</span>
+            <span class="rating-star">☆</span>
+            <span class="rating-star">☆</span>
+        </div>
+        <button class="share-button">Chia Sẻ Video</button>
+        <div class="success-message" id="success-message"></div>
     </div>
 
     <script>
         var videoContainer = document.getElementById("video-container");
         var video = document.getElementById("myVideo");
+        var successMessage = document.getElementById("success-message");
 
         function playVideo() {
             video.play();
         }
 
-        videoContainer.addEventListener("dragover", function (e) {
-            e.preventDefault();
-        });
-
-        videoContainer.addEventListener("drop", function (e) {
-            e.preventDefault();
-            var files = e.dataTransfer.files;
-
-            if (files.length > 0) {
-                var file = files[0];
-                if (file.type.includes("video")) {
-                    var objectURL = URL.createObjectURL(file);
-                    video.src = objectURL;
-                } else {
-                    alert("Chỉ chấp nhận tệp video.");
-                }
+        function submitFeedback() {
+            var feedbackInput = document.getElementById("feedback-input").value;
+            if (feedbackInput) {
+                successMessage.innerText = "Đã gửi phản hồi thành công tới HaAnhTuan - Thank b Đã Xem Video";
             }
-        });
+        }
     </script>
 </body>
 
